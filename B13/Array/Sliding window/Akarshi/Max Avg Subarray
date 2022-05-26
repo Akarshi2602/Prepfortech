@@ -1,0 +1,19 @@
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        maxs=float('-inf')
+        left=0
+        right=0
+        windowsum=0
+        n=len(nums)
+        while(right<n):
+            if(right-left+1<k):
+                windowsum=windowsum+nums[right]
+                right+=1
+            if(right-left+1==k):
+                windowsum=windowsum+nums[right]
+                maxs=max(windowsum,maxs)
+                windowsum-=nums[left]
+                right+=1
+                left+=1
+        return maxs/k
+        
