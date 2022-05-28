@@ -1,0 +1,19 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        d={}
+        left = 0
+        maximum=-9999999
+        for i in range(len(fruits)):
+            if fruits[i] not in d:
+                d[fruits[i]]=1
+            else:
+                 d[fruits[i]]+=1
+            while len(d)>2:
+                d[fruits[left]]-=1
+                
+                if   d[fruits[left]]==0:
+                    d.pop(fruits[left])
+                left+=1
+            maximum= max(maximum,i-left+1)
+        return maximum
+        
